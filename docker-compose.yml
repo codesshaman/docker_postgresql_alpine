@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  postgresdb:
+    image: 'postgres:alpine3.17'
+    environment:
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      # If your wanna nopass authentication, 
+      # you can use the following option:
+      # POSTGRES_HOST_AUTH_METHOD: "trust"
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    container_name: postgresdb
