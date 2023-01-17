@@ -31,3 +31,9 @@ Up:
 or
 
 ``docker-compose up -d``
+
+### Command to connect:
+
+```
+docker exec -it --user postgres postgresdb psql
+```
