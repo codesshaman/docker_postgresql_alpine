@@ -19,12 +19,14 @@ services:
     ports:
       - "5432:5432"
     container_name: postgresdb
-  pgadmin4:
-    image: 'dpage/pgadmin4:2023-01-16-3'
-    environment:
-      PGADMIN_DEFAULT_EMAIL: $PGADMIN_EMAIL
-      PGADMIN_DEFAULT_PASSWORD: $PGADMIN_PASSWORD
-    restart: unless-stopped
-    ports:
-      - "8432:80"
-    container_name: pgadmin4
+
+  # Uncommit pgadmin if necessary
+  # pgadmin4:
+  #   image: 'dpage/pgadmin4:2023-01-16-3'
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: example@example.com
+  #     PGADMIN_DEFAULT_PASSWORD: pgadmin
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8432:80"
+  #   container_name: pgadmin4
