@@ -22,7 +22,7 @@ help:
 	@echo -e "$(OK_COLOR)==== All commands of ${name} configuration ====$(NO_COLOR)"
 	@echo -e "$(WARN_COLOR)- make				: Launch configuration"
 	@echo -e "$(WARN_COLOR)- make build			: Building configuration"
-	@echo -e "$(WARN_COLOR)- make build			: Connect to database"
+	@echo -e "$(WARN_COLOR)- make conn			: Connect to database"
 	@echo -e "$(WARN_COLOR)- make down			: Stopping configuration"
 	@echo -e "$(WARN_COLOR)- make re			: Rebuild configuration"
 	@echo -e "$(WARN_COLOR)- make ps			: View configuration"
@@ -60,4 +60,4 @@ fclean:
 	# @docker network prune --force
 	# @docker volume prune --force
 
-.PHONY	: all help build down re ps clean fclean
+.PHONY	: all help build conn down re ps clean fclean
