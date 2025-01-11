@@ -44,7 +44,7 @@ services:
 networks:
   network:
     driver: bridge
-    name: $NETWK_NAME
+    name: $NETWORK_NAME
     ipam:
       config:
         - subnet: $NETWORK_ADDR
