@@ -4,6 +4,14 @@ Install:
 
 ``git clone https://github.com/codesshaman/docker_postgresql_alpine.git``
 
+Create environment file:
+
+``make env``
+
+Change postgres password:
+
+``nano .env``
+
 Build:
 
 ``make build``

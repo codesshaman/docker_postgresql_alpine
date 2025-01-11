@@ -1,6 +1,6 @@
 name = PostgreSQL
 
-NO_COLOR=\033[0m	# Color Reset
+NO_COLOR=\033[0m		# Color Reset
 COLOR_OFF='\e[0m'       # Color Off
 OK_COLOR=\033[32;01m	# Green Ok
 ERROR_COLOR=\033[31;01m	# Error red
@@ -24,8 +24,11 @@ help:
 	@echo -e "$(WARN_COLOR)- make build			: Building configuration"
 	@echo -e "$(WARN_COLOR)- make conn			: Connect to database"
 	@echo -e "$(WARN_COLOR)- make down			: Stopping configuration"
+	@echo -e "$(WARN_COLOR)- make env			: Create environment"
+	@echo -e "$(WARN_COLOR)- make git			: Set user and mail for git"
 	@echo -e "$(WARN_COLOR)- make re			: Rebuild configuration"
 	@echo -e "$(WARN_COLOR)- make ps			: View configuration"
+	@echo -e "$(WARN_COLOR)- make push			: Push changes to the github"
 	@echo -e "$(WARN_COLOR)- make clean			: Cleaning configuration$(NO_COLOR)"
 
 build:
@@ -40,6 +43,19 @@ down:
 	@printf "$(ERROR_COLOR)==== Stopping configuration ${name}... ====$(NO_COLOR)\n"
 	@docker-compose -f ./docker-compose.yml down
 
+env:
+	@printf "$(ERROR_COLOR)==== Create environment file for ${name}... ====$(NO_COLOR)\n"
+	@if [ -f .env ]; then \
+		echo "$(ERROR_COLOR).env file already exists!$(NO_COLOR)"; \
+	else \
+		cp .env.example .env; \
+		echo "$(GREEN).env file successfully created!$(NO_COLOR)"; \
+	fi
+
+git:
+	@printf "$(YELLOW)==== Set user name and email to git for ${name} repo... ====$(NO_COLOR)\n"
+	@bash scripts/gituser.sh
+
 re:	down
 	@printf "$(OK_COLOR)==== Rebuild configuration ${name}... ====$(NO_COLOR)\n"
 	@docker-compose -f ./docker-compose.yml up -d --build
@@ -47,6 +63,9 @@ re:	down
 ps:
 	@printf "$(BLUE)==== View configuration ${name}... ====$(NO_COLOR)\n"
 	@docker-compose -f ./docker-compose.yml ps
+
+push:
+	@bash scripts/push.sh
 
 clean: down
 	@printf "$(ERROR_COLOR)==== Cleaning configuration ${name}... ====$(NO_COLOR)\n"
