@@ -13,6 +13,10 @@ PURPLE='\e[1;35m'       # Purple
 CYAN='\e[1;36m'         # Cyan
 WHITE='\e[1;37m'        # White
 UCYAN='\e[4;36m'        # Cyan
+ifneq (,$(wildcard .env))
+    include .env
+    export $(shell sed 's/=.*//' .env)
+endif
 
 all:
 	@printf "Launch configuration ${name}...\n"
@@ -60,6 +64,14 @@ env:
 git:
 	@printf "$(YELLOW)==== Set user name and email to git for ${name} repo... ====$(NO_COLOR)\n"
 	@bash scripts/gituser.sh
+
+net:
+	@printf "$(YELLOW)==== Создание сети для конфигурации ${name}... ====$(NO_COLOR)\n"
+	@docker network create \
+	  --driver=bridge \
+	  --subnet=$(NETWORK_ADDR) \
+	  --gateway=$(NETWORK_GATE) \
+	  $(NETWORK_NAME)
 
 re:	down
 	@printf "$(OK_COLOR)==== Rebuild configuration ${name}... ====$(NO_COLOR)\n"

@@ -41,8 +41,9 @@ services:
 
 networks:
   network:
-    driver: bridge
     name: $NETWORK_NAME
+    external: true
+    driver: bridge
     ipam:
       config:
         - subnet: $NETWORK_ADDR

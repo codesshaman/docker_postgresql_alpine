@@ -12,6 +12,10 @@ Change postgres password:
 
 ``nano .env``
 
+Create external network:
+
+``make net``
+
 Build:
 
 ``make build``
