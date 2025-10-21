@@ -1,3 +1,5 @@
+---
+
 services:
   postgresdb:
     image: $POSTGRES_IMAGE
