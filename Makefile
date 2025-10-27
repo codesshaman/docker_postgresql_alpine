@@ -34,6 +34,7 @@ help:
 	@echo -e "$(WARN_COLOR)- make git			: Set user and mail for git"
 	@echo -e "$(WARN_COLOR)- make re			: Rebuild configuration"
 	@echo -e "$(WARN_COLOR)- make ps			: View configuration"
+	@echo -e "$(WARN_COLOR)- make psql			: Connect to psql"
 	@echo -e "$(WARN_COLOR)- make push			: Push changes to the github"
 	@echo -e "$(WARN_COLOR)- make clean			: Cleaning configuration$(NO_COLOR)"
 
@@ -86,6 +87,10 @@ re:	down
 ps:
 	@printf "$(BLUE)==== View configuration ${name}... ====$(NO_COLOR)\n"
 	@docker-compose -f ./docker-compose.yml ps
+
+psql:
+	@printf "$(OK_COLOR)==== Connect to ${name} psql... ====$(NO_COLOR)\n"
+	@docker exec -it --user postgres postgres psql
 
 push:
 	@bash scripts/push.sh
