@@ -42,7 +42,6 @@ build:
 	@printf "$(OK_COLOR)==== Building configuration ${name}... ====$(NO_COLOR)\n"
 	@docker-compose -f ./docker-compose.yml up -d --build
 
-
 config:
 	@printf "$(ERROR_COLOR)==== Соединение с контейнером ${REGISTRY_NAME}... ====$(NO_COLOR)\n"
 	@docker-compose config
