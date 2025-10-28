@@ -34,6 +34,7 @@ help:
 	@echo -e "$(WARN_COLOR)- make git			: Set user and mail for git"
 	@echo -e "$(WARN_COLOR)- make re			: Rebuild configuration"
 	@echo -e "$(WARN_COLOR)- make ps			: View configuration"
+	@echo -e "$(WARN_COLOR)- make start			: Start postgresql container"
 	@echo -e "$(WARN_COLOR)- make psql			: Connect to psql"
 	@echo -e "$(WARN_COLOR)- make push			: Push changes to the github"
 	@echo -e "$(WARN_COLOR)- make clean			: Cleaning configuration$(NO_COLOR)"
@@ -94,6 +95,9 @@ psql:
 push:
 	@bash scripts/push.sh
 
+start:
+	@docker-compose -f ./docker-compose.yml up -d --no-deps --build postgresdb
+
 clean: down
 	@printf "$(ERROR_COLOR)==== Cleaning configuration ${name}... ====$(NO_COLOR)\n"
 	@yes | docker system prune -a
@@ -106,4 +110,4 @@ fclean:
 	# @docker network prune --force
 	# @docker volume prune --force
 
-.PHONY	: all help build conn down re ps clean fclean
+.PHONY	: all help build conn down re ps start clean fclean
