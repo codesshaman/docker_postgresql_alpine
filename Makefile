@@ -32,6 +32,7 @@ help:
 	@echo -e "$(WARN_COLOR)- make down			: Stopping configuration"
 	@echo -e "$(WARN_COLOR)- make env			: Create environment"
 	@echo -e "$(WARN_COLOR)- make git			: Set user and mail for git"
+	@echo -e "$(WARN_COLOR)- make logs			: Show "
 	@echo -e "$(WARN_COLOR)- make re			: Rebuild configuration"
 	@echo -e "$(WARN_COLOR)- make ps			: View configuration"
 	@echo -e "$(WARN_COLOR)- make start			: Start postgresql container"
@@ -71,6 +72,10 @@ env:
 git:
 	@printf "$(YELLOW)==== Set user name and email to git for ${name} repo... ====$(NO_COLOR)\n"
 	@bash scripts/gituser.sh
+
+logs:
+	@printf "$(OK_COLOR)==== Show ${name} logs... ====$(NO_COLOR)\n"
+	@docker logs ${POSTGRES_NAME}
 
 net:
 	@printf "$(YELLOW)==== Создание сети для конфигурации ${name}... ====$(NO_COLOR)\n"
