@@ -52,6 +52,10 @@ condb:
 	@printf "$(OK_COLOR)==== Connect to database ${name}... ====$(NO_COLOR)\n"
 	@docker exec -it --user postgres postgres psql
 
+con:
+	@printf "$(OK_COLOR)==== Connect to database ${name}... ====$(NO_COLOR)\n"
+	@docker exec -it --user postgres postgres bash
+
 conn:
 	@printf "$(OK_COLOR)==== Connect to database ${name}... ====$(NO_COLOR)\n"
 	@docker exec -it --user postgres postgres bash
@@ -72,6 +76,10 @@ env:
 git:
 	@printf "$(YELLOW)==== Set user name and email to git for ${name} repo... ====$(NO_COLOR)\n"
 	@bash scripts/gituser.sh
+
+log:
+	@printf "$(OK_COLOR)==== Show ${name} logs... ====$(NO_COLOR)\n"
+	@docker logs ${POSTGRES_NAME}
 
 logs:
 	@printf "$(OK_COLOR)==== Show ${name} logs... ====$(NO_COLOR)\n"
