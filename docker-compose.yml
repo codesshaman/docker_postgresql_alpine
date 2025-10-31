@@ -11,8 +11,8 @@ services:
       # POSTGRES_HOST_AUTH_METHOD: "trust"
     restart: unless-stopped
     volumes:
-      - ./wal-g/wal-g:/usr/local/bin/wal-g:z
-      - ./initdb:/docker-entrypoint-initdb.d:z
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+      - ./wal-g/wal-g:/usr/local/bin/wal-g:ro
       - $DB_VOLUME:/var/lib/postgresql/data:z
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
